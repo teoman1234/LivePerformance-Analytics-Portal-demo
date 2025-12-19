@@ -1,0 +1,79 @@
+# ===========================================
+# DATABASE FILES - Contains real user data
+# ===========================================
+*.db
+*.sqlite
+*.sqlite3
+data.db
+abps_data.db
+
+# ===========================================
+# EXCEL/DATA FILES - May contain real data
+# ===========================================
+*.xlsx
+*.xls
+tiktok_data.xlsx
+data_*.xlsx
+
+# ===========================================
+# ENVIRONMENT & SECRETS
+# ===========================================
+.env
+.env.*
+.env.local
+.env.production
+.env.development
+*.pem
+*.key
+secrets.json
+config.local.json
+
+# ===========================================
+# PYTHON
+# ===========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+.eggs/
+*.egg-info/
+*.egg
+dist/
+build/
+
+# ===========================================
+# FRONTEND BUILD
+# ===========================================
+frontend/node_modules/
+frontend/dist/
+frontend/.cache/
+
+# ===========================================
+# IDE & EDITORS
+# ===========================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ===========================================
+# LOGS
+# ===========================================
+*.log
+logs/
+npm-debug.log*
+
+# ===========================================
+# TEMP FILES
+# ===========================================
+*.tmp
+*.temp
+.cache/
