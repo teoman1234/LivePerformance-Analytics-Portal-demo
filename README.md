@@ -51,7 +51,7 @@
 #### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/LivePerformance-Analytics-Portal-demo.git
+git clone https://github.com/teoman1234/LivePerformance-Analytics-Portal-demo.git
 cd LivePerformance-Analytics-Portal-demo
 ```
 
@@ -305,7 +305,7 @@ python load_real_data.py
 
 ## 📞 Contact & Support
 
-- **Issues:** [GitHub Issues](https://github.com/YOUR_USERNAME/LivePerformance-Analytics-Portal-demo/issues)
+- **Issues:** [GitHub Issues](https://github.com/teoman1234/LivePerformance-Analytics-Portal-demo/issues)
 - **Email:** [your-email@example.com](mailto:your-email@example.com)
 - **Documentation:** [docs/](./docs/)
 
