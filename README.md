@@ -1,187 +1,108 @@
 # 🎯 LivePerformance Analytics Portal
 
-TikTok yayıncı verilerini analiz eden, performans metrikleri hesaplayan ve görselleştiren bir web uygulaması.
-
-- **Backend:** Python (FastAPI) — `app/main.py`
-- **Frontend:** React + Vite — `frontend/`
-- **Veritabanı:** SQLite (yerel dosya `data.db`)
+TikTok yayıncılarının performansını takip eden bir web uygulaması.
 
 ---
 
-## ✅ Gereksinimler
+## 📦 Önce Bunları Yükle
 
-| Araç | Minimum Sürüm |
-|------|---------------|
-| Python | 3.10+ |
-| Node.js | 18+ |
-| npm | 9+ |
+Uygulamayı çalıştırabilmek için bilgisayarında iki program olması gerekiyor:
+
+1. **Python** → https://www.python.org/downloads/ *(en üstteki sarı butona tıkla, indir ve kur)*
+   - Kurulum sırasında **"Add Python to PATH"** kutucuğunu işaretlemeyi unutma!
+2. **Node.js** → https://nodejs.org *(LTS yazan versiyonu indir)*
+
+Her ikisini de kurduktan sonra aşağıdaki adımlara geç.
 
 ---
 
-## 🚀 Kurulum ve Çalıştırma
+## ▶️ Uygulamayı Çalıştırma
 
-### 1. Projeyi İndir
+> 💡 **Terminal nedir?** Windows'ta **Başlat → "cmd"** yaz → Enter. Mac'te **Spotlight → "Terminal"** yaz → Enter.
 
-```bash
-git clone https://github.com/teoman1234/LivePerformance-Analytics-Portal-demo.git
-cd LivePerformance-Analytics-Portal-demo
+Aşağıdaki adımları **sırasıyla** uygula.
+
+---
+
+### Adım 1 — Proje klasörünü terminalde aç
+
+Projeyi bilgisayarına indirdikten sonra terminalde o klasöre gir. Örneğin masaüstüne indirdiysen:
+
+```
+cd Masaustu\LivePerformance-Analytics-Portal-demo
 ```
 
 ---
 
-### 2. Backend Kurulumu
+### Adım 2 — Arka plan servisi kur ve başlat
 
-Proje kök dizininde bir sanal ortam oluştur ve bağımlılıkları yükle:
+Bu uygulamayı ilk kez çalıştırıyorsan aşağıdaki 3 satırı **sırasıyla** yapıştır ve Enter'a bas:
 
-```bash
-# Sanal ortam oluştur
+```
 python -m venv .venv
-
-# Sanal ortamı aktifleştir
-# Windows (PowerShell):
-.\.venv\Scripts\Activate.ps1
-# Windows (CMD):
-.\.venv\Scripts\activate.bat
-# macOS / Linux:
-source .venv/bin/activate
-
-# Bağımlılıkları yükle
+.venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-Backend'i başlat (port **8001**):
+> Mac/Linux kullanıyorsan 2. satır yerine şunu yaz: `source .venv/bin/activate`
 
-```bash
+Kurulum bittikten sonra servisi başlat:
+
+```
 uvicorn app.main:app --host 127.0.0.1 --port 8001
 ```
 
-> ✅ Terminalde `Application startup complete.` mesajını görünce backend hazırdır.
+Terminalde `Application startup complete.` yazısını görünce bu pencereyi **kapatma**, arka planda çalışsın.
 
 ---
 
-### 3. Örnek Veri Yükleme (İlk kurulumda gerekli)
+### Adım 3 — Arayüzü kur ve başlat
 
-Backend çalışırken **yeni bir terminal** açıp aşağıdaki komutu çalıştır:
+**Yeni bir terminal penceresi aç** (birinci terminal açık kalsın), projenin klasörüne tekrar gir ve şunu çalıştır:
 
-```bash
-# Windows (PowerShell):
-Invoke-RestMethod -Uri "http://127.0.0.1:8001/api/upload" -Method Post -InFile "sample_data.csv" -ContentType "multipart/form-data"
-
-# macOS / Linux:
-curl -X POST -F "file=@sample_data.csv" http://127.0.0.1:8001/api/upload
 ```
-
-> Alternatif: Frontend'deki **"Veriler"** sayfasından arayüz üzerinden de dosya yükleyebilirsiniz.
-
----
-
-### 4. Frontend Kurulumu
-
-```bash
 cd frontend
 npm install
 npm run dev
 ```
 
-> ✅ Terminalde `Local: http://localhost:5173` mesajını görünce frontend hazırdır.
+Terminalde `Local: http://localhost:5173` yazısını görünce hazırsın.
 
 ---
 
-### 5. Uygulamayı Aç
+### Adım 4 — Tarayıcıda aç
 
-Tarayıcıda şu adresi aç: **http://localhost:5173**
+Herhangi bir tarayıcıda (Chrome, Firefox vb.) şu adresi aç:
 
----
-
-## 🔐 Giriş Bilgileri
-
-Varsayılan süpervizör hesabı:
-
-| Alan | Değer |
-|------|-------|
-| E-posta | `admin@superstar.local` |
-| Şifre | `admin` |
-
-Özel kullanıcı adı/şifre tanımlamak için proje kök dizininde `.env` dosyası oluştur:
-
-```
-SUPERSTAR_ADMIN_EMAIL=benimemail@ornek.com
-SUPERSTAR_ADMIN_PASSWORD=guclu_sifre
-```
+**http://localhost:5173**
 
 ---
 
-## 📁 Proje Yapısı
+## 🔑 Giriş Bilgileri
 
-```
-├── app/
-│   └── main.py              # FastAPI backend (API endpoint'leri)
-├── frontend/
-│   ├── src/
-│   │   ├── pages/           # React sayfaları (Supervisor, Influencers, vb.)
-│   │   ├── components/      # Yeniden kullanılabilir bileşenler
-│   │   ├── api.js           # API çağrı yardımcıları
-│   │   └── config.js        # Sabit konfigürasyon değerleri
-│   ├── package.json
-│   └── vite.config.js
-├── requirements.txt         # Python bağımlılıkları
-├── sample_data.csv          # Test için örnek veri
-├── generate_realistic_data.py  # Simüle edilmiş geçmiş veri üretici
-└── data.db                  # SQLite veritabanı (otomatik oluşur, git'e eklenmez)
-```
+| | |
+|---|---|
+| **E-posta** | `admin@superstar.local` |
+| **Şifre** | `admin` |
 
 ---
 
-## ⚙️ Ortam Değişkenleri
+## 📊 İlk Veriyi Yükle
 
-### Backend (opsiyonel)
-
-`.env` dosyası kök dizinde oluşturulabilir:
-
-```env
-SUPERSTAR_ADMIN_EMAIL=admin@superstar.local
-SUPERSTAR_ADMIN_PASSWORD=admin
-```
-
-### Frontend (opsiyonel)
-
-`frontend/.env` dosyası oluşturulabilir:
-
-```env
-VITE_API_BASE=http://127.0.0.1:8001
-```
-
-> Frontend varsayılan olarak `http://127.0.0.1:8001` adresini kullanır. Backend farklı bir port ya da sunucuda çalışıyorsa bu değişkeni ayarla.
+Giriş yaptıktan sonra uygulama boş görünebilir. Sol menüden **"Veriler"** sayfasına git ve `sample_data.csv` dosyasını yükle — bu dosya proje klasörünün içinde hazır geliyor.
 
 ---
 
-## 🛠️ Sık Karşılaşılan Sorunlar
+## ❓ Sorun mu var?
 
-### ❌ `uvicorn` komutu bulunamıyor
-Sanal ortamın aktifleştirildiğinden emin ol:
-```bash
-source .venv/bin/activate   # macOS/Linux
-.\.venv\Scripts\Activate.ps1  # Windows PowerShell
+**"Uygulama açılıyor ama veri yok"**
+→ Adım 2'deki servisi başlattığından emin ol ve "Veriler" sayfasından dosyayı yükle.
+
+**"pip/python/npm tanımıyor" hatası**
+→ Python ve Node.js kurulumunu yaptın mı? Python kurulumunda "Add Python to PATH" seçeneğini işaretledin mi?
+
+**Windows'ta `.venv\Scripts\activate` hata veriyor**
+→ Aşağıdaki komutu bir kez çalıştır, ardından tekrar dene:
 ```
-
-### ❌ Frontend `CORS` veya bağlantı hatası veriyor
-- Backend'in çalışıp çalışmadığını kontrol et: `http://127.0.0.1:8001/docs`
-- `VITE_API_BASE` ortam değişkeninin doğru ayarlandığından emin ol.
-
-### ❌ PowerShell `Activate.ps1` çalıştırmaya izin vermiyor
-```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-```
-
-### ❌ Uygulama açılıyor ama veri görünmüyor
-- `sample_data.csv` dosyasını yüklemediğini kontrol et (Adım 3).
-- Ya da `generate_realistic_data.py` scriptini çalıştırarak demo veri oluştur:
-  ```bash
-  python generate_realistic_data.py
-  ```
-
-### ❌ `npm install` hata veriyor
-Node.js sürümünün 18+ olduğunu doğrula:
-```bash
-node --version
 ```
